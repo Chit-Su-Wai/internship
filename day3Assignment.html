@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CSS Utility Simulator</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+
+    }
+
+    body {
+      background: #f3f5f8;
+      padding: 40px;
+      color: #222;
+
+    }
+
+    .container {
+      width: 1000px;
+      margin: auto;
+      height: auto;
+    }
+
+    /* Header */
+    .title {
+      margin-bottom: 20px;
+    }
+
+    .title h1 {
+      font-size: 25px;
+      font-weight: 500;
+    }
+
+    .title p {
+      color: #666;
+      margin-top: 5px;
+    }
+
+    /* Navbar */
+    .navbar {
+      background: #0d1224;
+      color: white;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-radius: 3px;
+      margin-bottom: 30px;
+    }
+
+    .logo {
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 10px;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-size: 18px;
+    }
+
+    /* Features */
+    .features {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 30px;
+    }
+
+    .feature-box {
+      margin-right: auto;
+      margin-left: auto;
+      width: 25%;
+      background: #adc6ed;
+      height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 5px;
+      color: #3f3e3d;
+      font-size: 20px;
+    }
+
+    /* Main Content */
+    .main {
+      display: flex;
+      gap: 8px;
+    }
+
+    /* Left Panel */
+    .controls {
+      width: 50%;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      /* box-shadow:0 2px 10px rgba(0,0,0,0.08); */
+    }
+
+    .controls h2 {
+      margin-bottom: 25px;
+      font-size: 28px;
+    }
+
+    .form-group {
+      margin-bottom: 22px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 10px;
+      font-weight: 600;
+      color: #555;
+    }
+
+    .form-group select {
+      width: 100%;
+      padding: 14px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      font-size: 16px;
+      background: white;
+    }
+
+    /* Preview Area */
+    .preview {
+      width: 50%;
+      background: #e8ebf0;
+      border-radius: 12px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 430px;
+    }
+
+    .card {
+      background: #0d63ff;
+      color: white;
+      width: 420px;
+      padding: 25px;
+      /* box-shadow:0 6px 18px rgba(0,0,0,0.15); */
+    }
+
+    .card h3 {
+      font-size: 28px;
+      margin-bottom: 15px;
+    }
+
+    .card p {
+      font-size: 22px;
+      line-height: 1.5;
+      color: #dce7ff;
+    }
+
+    /* Buttons */
+    .buttons {
+      margin-top: 35px;
+      display: flex;
+      gap: 8px;
+    }
+
+    .btn {
+      background: #0d63ff;
+      color: white;
+      border: none;
+      padding: 14px 24px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: 600;
+      transition: 0.5s;
+    }
+
+    .btn:hover {
+      transform: translateY(-5px);
+      opacity: 0.9;
+    }
+
+    .slow-btn {
+      transition: 2s;
+    }
+  </style>
+</head>
+
+<body>
+  <section class="container">
+
+    <!-- Title -->
+    <div class="title">
+      <h1>CSS Utility Simulator</h1>
+      <p>Change the inputs below to see how atomic classes combine to build UIs.</p>
+    </div>
+
+    <!-- Navbar -->
+    <div class="navbar">
+      <div class="logo">MyLogo </div>
+      <div class="nav-links">
+        <a href="">Home</a>
+        <a href="">About</a>
+        <a href="">Contact</a>
+      </div>
+    </div>
+
+    <!-- Feature Boxes -->
+    <div class="features">
+      <div class="feature-box">Feature 1</div>
+      <div class="feature-box">Feature 2</div>
+      <div class="feature-box">Feature 3</div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main">
+
+      <!-- Left Controls -->
+      <div class="controls">
+
+        <h2>Utility Controls</h2>
+
+        <div class="form-group">
+          <label>Padding (Spacing)</label>
+          <select>
+            <option>Medium (p-8)</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Background Theme (Colors)</label>
+          <select>
+            <option>Primary Blue</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Text Size (Typography)</label>
+          <select>
+            <option>Large (text-xl)</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Corner Radius (Borders)</label>
+          <select>
+            <option>Square (rounded-none)</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Shadow (Depth)</label>
+          <select>
+            <option>Medium (shadow-md)</option>
+          </select>
+        </div>
+
+      </div>
+
+      <!-- Preview -->
+      <div class="preview">
+
+        <div class="card">
+          <h3>Alex Walker</h3>
+
+          <p>
+            Full-Stack Web Developer building awesome things with Tailwind CSS.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Buttons -->
+    <div class="buttons">
+      <button class="btn">Submit</button>
+      <button class="btn slow-btn">Hover Me Slowly!</button>
+    </div>
+  </section>
+</body>
+
+</html>

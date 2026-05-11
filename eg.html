@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .container {
+        width: 400px;
+        height: 250px;
+        margin: 40px 15px;
+        padding: 15px;
+        background-color: #f9f4f4;
+        border-radius: 15px;
+        justify-content: center;
+        text-align: center;
+        gap: 30px;
+      }
+      .container select {
+        cursor: pointer;
+      }
+      .content {
+        display: flex;
+        justify-content: center;
+        text-align: center;
+        gap: 10px;
+        padding: 15px;
+        height: 60px;
+      }
+      .btn {
+        display: inline-block;
+        width: 100%;
+        height: 40px;
+        background-color: rgb(98, 98, 235);
+        color: #f9f4f4;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        /* margin:8px 7px; */
+        cursor: pointer;
+      }
+      .result-box {
+        display: flex;
+        /* gap: 80%; */
+        justify-content: space-between;
+        margin: auto;
+        padding: 10px;
+        width: 100%;
+        border: 1px dotted #948f8f;
+        font-size: 15px;
+        margin-top: 25px;
+        /* height:30px; */
+      }
+    </style>
+  </head>
+  <body>
+    <section class="container">
+      <h1>Mini Calculator</h1>
+      <div class="content">
+        <input type="number" name="" id="num1" />
+        <select id="operator">
+          <option value="+">+</option>
+          <option value="-">-</option>
+          <option value="*">*</option>
+          <option value="/">/</option>
+        </select>
+        <input type="number" name="" id="num2" />
+      </div>
+      <button class="btn">Calculate Amount</button>
+      <div class="result-box">
+        <span>Result: </span>
+        <span id="result">0</span>
+      </div>
+    </section>
+    <script>
+      const btn = document.querySelector(".btn");
+      btn.addEventListener("click", calculateAmount);
+      function calculateAmount() {
+        const num1 = parseFloat(document.getElementById("num1").value);
+        const num2 = parseFloat(document.getElementById("num2").value);
+        const operator = document.getElementById("operator").value;
+        const resultEl = document.getElementById("result");
+
+        if (isNaN(num1) || isNaN(num2)) {
+          resultEl.textContent = "Invalid";
+          return;
+        }
+
+        let result;
+
+        switch (operator) {
+          case "+":
+            result = num1 + num2;
+            break;
+          case "-":
+            result = num1 - num2;
+            break;
+          case "*":
+            result = num1 * num2;
+            break;
+          case "/":
+            result = num2 !== 0 ? num1 / num2 : "Error";
+            break;
+          default:
+            result = "Error";
+        }
+
+        resultEl.textContent = result;
+      }
+    </script>
+  </body>
+</html>
