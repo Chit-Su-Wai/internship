@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      .calculator {
+        width: 250px;
+        height: 450px;
+        background-color: aliceblue;
+        border-radius: 20px;
+        /* display:flex; */
+        justify-content: center;
+        align-items: center;
+        /* flex-direction:column; */
+      }
+      body {
+        margin: 0;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #d9d9d9;
+      }
+      .display {
+        /* width:90%; */
+        height: 100px;
+        background-color: white;
+        color: rgb(132, 132, 243);
+        text-align: right;
+        font-size: 20px;
+        padding: 5px;
+        overflow: hidden;
+        /* margin:20px auto; */
+      }
+      .buttons {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 15px;
+        width: 95%;
+        margin: 15px auto;
+      }
+      button {
+        height: 48px;
+        border: none;
+        border-radius: 50%;
+        background: #eef2f9;
+        color: #2d7bd3;
+        font-size: 22px;
+        cursor: pointer;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.04);
+      }
+      .red {
+        color: rgb(244, 51, 244);
+      }
+      .op {
+        color: rgb(244, 51, 244);
+      }
+      .equal {
+        background-color: rgb(244, 51, 244);
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="calculator">
+      <div class="display" id="display">0</div>
+      <div class="buttons">
+        <button class="red" onclick="clearDisplay()">C</button>
+        <button class="red" onclick="backSpace()">⌫</button>
+        <button onclick="append('%')">%</button>
+        <button class="op" onclick="append('/')">÷</button>
+
+        <button onclick="append('7')">7</button>
+        <button onclick="append('8')">8</button>
+        <button onclick="append('9')">9</button>
+        <button class="op" onclick="append('*')">×</button>
+
+        <button onclick="append('4')">4</button>
+        <button onclick="append('5')">5</button>
+        <button onclick="append('6')">6</button>
+        <button class="op" onclick="append('-')">−</button>
+
+        <button onclick="append('1')">1</button>
+        <button onclick="append('2')">2</button>
+        <button onclick="append('3')">3</button>
+        <button class="op" onclick="append('+')">+</button>
+
+        <button onclick="appendParentheses()">7</button>
+        <button onclick="append('0')">0</button>
+        <button onclick="append('.')">.</button>
+        <button class="equal" onclick="calculate()">=</button>
+      </div>
+    </div>
+    <script>
+     const display = document.getElementById("display");
+    let expression = "";
+
+    function updateDisplay() {
+      display.textContent = expression  "0";
+    }
+
+    function append(value) {
+      expression += value;
+      updateDisplay();
+    }
+
+    function clearDisplay() {
+      expression = "";
+      updateDisplay();
+    }
+
+    function backspace() {
+      expression = expression.slice(0, -1);
+      updateDisplay();
+    }
+
+    function appendParentheses() {
+      const open = (expression.match(/\(/g)  []).length;
+      const close = (expression.match(/\)/g)  []).length;
+
+      if (open === close  /[+\-*/(]$/.test(expression)) {
+        expression += "(";
+      } else {
+        expression += ")";
+      }
+
+      updateDisplay();
+    }
+
+    function calculate() {
+      try {
+        let result = Function('"use strict"; return (' + expression.replace(/%/g, "/100") + ')')();
+        expression = String(result);
+        updateDisplay();
+      } catch {
+        display.textContent = "Error";
+        expression = "";
+      }
+    }
+      
+    </script>
+  </body>
+</html>
