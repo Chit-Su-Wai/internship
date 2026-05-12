@@ -31,13 +31,20 @@
       .display {
         width: 100%;
         height: 120px;
+    
         border: none;
         outline: none;
         background: transparent;
         text-align: right;
-        font-size: 40px;
+        font-size: 30px;
         color: #4f82c3;
         padding: 10px;
+        white-space: nowrap;
+        overflow-x: auto;
+      }
+      
+      .display::-webkit-scrollbar {
+        display: none;
       }
 
       .buttons {
@@ -84,7 +91,7 @@
 
   <body>
     <div class="calculator">
-      <input type="text" id="display" class="display" value="0" readonly />
+      <input type="text" id="display" class="display" value="0" />
 
       <div class="buttons">
         <button class="red" onclick="clearDisplay()">C</button>
@@ -138,31 +145,37 @@
 
       function updateDisplay() {
         display.value = expression || "0";
+        display.scrollLeft = display.scrollWidth;
       }
-
       function appendValue(value) {
-        let lastChar = expression[expression.length - 1];
+        let start = display.selectionStart;
+        let end = display.selectionEnd;
 
-        // operator list
-        let operators = ["+", "-", "*", "/", "%", "."];
+        let lastChar = expression[start - 1];
+
+        let operators = ["+", "-", "*", "/", "%"];
 
         if (operators.includes(lastChar) && operators.includes(value)) {
           return;
         }
 
-        expression += value;
+        expression = expression.slice(0, start) + value + expression.slice(end);
+
+        updateDisplay();
+
+        setTimeout(() => {
+          display.selectionStart = display.selectionEnd = start + 1;
+        }, 0);
+      }
+      function backspace() {
+        expression = expression.slice(0, -1);
+
         updateDisplay();
       }
       function clearDisplay() {
         expression = "";
 
-        updateDisplay();
-      }
-
-      function backspace() {
-        expression = expression.slice(0, -1);
-
-        updateDisplay();
+        display.value = "0";
       }
 
       function appendParentheses() {
@@ -197,6 +210,11 @@
       }
 
       function calculate() {
+        if (expression.trim() === "") {
+          expression = "0";
+          updateDisplay();
+          return;
+        }
         try {
           let result = eval(expression.replace(/%/g, "/100"));
 
