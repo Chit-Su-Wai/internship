@@ -10,6 +10,7 @@
         margin: 0;
         padding: 0;
         box-sizing: border-box;
+        font-family: Arial, sans-serif;
       }
 
       body {
@@ -143,12 +144,15 @@
         let lastChar = expression[expression.length - 1];
 
         // operator list
-        let operators = ["+", "-", "*", "/", "%"];
+        let operators = ["+", "-", "*", "/", "%", "."];
 
         if (operators.includes(lastChar) && operators.includes(value)) {
           return;
         }
 
+        expression += value;
+        updateDisplay();
+      }
       function clearDisplay() {
         expression = "";
 
@@ -160,6 +164,7 @@
 
         updateDisplay();
       }
+
       function appendParentheses() {
         let openCount = 0;
         let closeCount = 0;
