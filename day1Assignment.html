@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-500 flex justify-center items-center min-h-screen">
+    <div class="flex w-[600px] bg-white border border-black rounded-xl p-5 justify-between"> 
+        <!-- left side -->
+        <div class="flex flex-col gap-3">
+            <h1 class="text-xl font-bold">Update Variables</h1>
+            <div>
+                <label for="nameInput">Name(String):</label>
+                <input type="text" name="" id="nameInput" class="border border-black rounded-lg py-1 px-2">
+            </div>
+            <div>
+                <label for="ageInput">Age(Number):</label>
+                <input type="number" name="" id="ageInput" class="border border-black rounded-lg py-1 px-2">
+            </div>
+            <div>
+                <label for="vipInput">VIP Status(Boolean):</label>
+                <input type="checkbox" name="" id="vipInput">
+            </div>
+            <div>
+                <label for="colorInput">Card Color:</label>
+                <input type="color" name="" id="colorInput" class="py-1 px-1 mt-1 h-6">
+            </div>
+
+        </div>
+        <!-- right side -->
+        <div class="mr-8 flex flex-col gap-4">
+            <h1 class="text-xl font-bold">Live DOM Output</h1>
+            <div class="m-2 p-3 border border-black-200 rounded-lg w-[100%]" id="card">
+                <span class="bg-yellow-400 border border-black rounded-lg" for="" id="vipLabel">VIP MEMBER</span>
+
+                <p>Name: <span id="nameOutput"></span></p>
+                <p>Age: <span id="ageOutput"></span></p>
+            </div>
+
+        </div>
+        <script>
+            const nameInput = document.getElementById("nameInput");
+            const ageInput = document.getElementById("ageInput");
+            const vipInput = document.getElementById("vipInput");
+            const colorInput = document.getElementById("colorInput");
+
+            const nameOutput = document.getElementById("nameOutput");
+            const ageOutput = document.getElementById("ageOutput");
+            const vipLabel = document.getElementById("vipLabel");
+            const card = document.getElementById("card");
+
+            // name
+            nameInput.addEventListener("input", function () {
+                nameOutput.innerHTML = nameInput.value || "No Name";
+            });
+
+            // age
+            ageInput.addEventListener("input", function () {
+                ageOutput.textContent = (ageInput.value || 0);
+            });
+
+            // vipmember
+            vipInput.addEventListener("change", function () {
+                vipLabel.style.display = vipInput.checked ? "inline-block" : "none";
+            });
+
+            // card
+            colorInput.addEventListener("input", function () {
+                card.style.backgroundColor = colorInput.value;
+            });
+        </script>
+    </div>
+
+</body>
+
+</html>

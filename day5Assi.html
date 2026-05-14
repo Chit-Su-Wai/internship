@@ -240,36 +240,43 @@
         display.value = "0";
       }
 
+      // 
       function appendParentheses() {
-        let openCount = 0;
-        let closeCount = 0;
-        for (let char of expression) {
-          if (char === "(") {
-            openCount++;
-          }
 
-          if (char === ")") {
-            closeCount++;
-          }
-        }
+  // calculate ပြီးပြီးချင်း () နှိပ်ရင်
+  if (justCalculated) {
+    expression += "*(";
+    justCalculated = false;
+    updateDisplay();
+    return;
+  }
 
-        let lastChar = expression[expression.length - 1];
+  let openCount = (expression.match(/\(/g) || []).length;
+  let closeCount = (expression.match(/\)/g) || []).length;
 
-        if (
-          openCount === closeCount ||
-          lastChar === "+" ||
-          lastChar === "-" ||
-          lastChar === "*" ||
-          lastChar === "/" ||
-          lastChar === "("
-        ) {
-          expression += "(";
-        } else {
-          expression += ")";
-        }
+  let lastChar = expression[expression.length - 1];
 
-        updateDisplay();
-      }
+  
+  if (
+    expression === "" ||
+    ["+", "-", "*", "/", "%", "("].includes(lastChar) ||
+    openCount === closeCount
+  ) {
+
+    // 2( => 2*(
+    if (/[0-9)]/.test(lastChar)) {
+      expression += "*(";
+    } else {
+      expression += "(";
+    }
+
+  } else {
+    
+    expression += ")";
+  }
+
+  updateDisplay();
+}
 
       //
       function calculate() {
